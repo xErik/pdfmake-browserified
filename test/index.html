@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<title>pdfmake-browserified demo and test</title>
+	</head>
+	<body>
+		<input size="50" type="text" id="content" value="This is a sample PDF printed with pdfMake"></input>
+		<input type="button" value="Open PDF" onclick="openPdf(document.getElementById('content').value)"></input>
+		<input type="button" value="Print PDF" onclick="printPdf(document.getElementById('content').value)"></input>
+		<input type="button" value="Download PDF" onclick="downloadPdf(document.getElementById('content').value)"></input>
+		<input type="button" value="IFrame PDF" onclick="iframePdf(document.getElementById('content').value)"></input>
+
+		<p>Note: <i>Print Pdf</i> results in an obscure error and does not work right now.</p>
+
+		<div>
+			<iframe width="800" height="400" id="theIFrame" src=""></iframe>
+		</div>
+
+		<!-- provides the function "createPdf" in a browser -->
+		<script src="bundle.js" type="text/javascript"></script>
+
+		<!-- helper functions, invoked by buttons -->
+		<script type="text/javascript">
+		openPdf = function(content) {
+			// content: 'This is an sample PDF printed with pdfMake'
+			var dd = { content: content };
+			createPdf(dd).open();
+		}
+
+		printPdf = function(content) {
+			// content: 'This is an sample PDF printed with pdfMake'
+			var dd = { content: content };
+			createPdf(dd).print();
+		}
+
+		downloadPdf = function(content) {
+			// content: 'This is an sample PDF printed with pdfMake'
+			var dd = { content: content };
+			createPdf(dd).download();
+		}
+
+		iframePdf = function(content) {
+			var dd = { content: content };
+			createPdf(dd).getDataUrl(function (result) {
+				document.getElementById('theIFrame').setAttribute('src', result);
+			});
+		}
+		</script>
+	</body>
+</html>
