@@ -1,6 +1,6 @@
 {
   "name": "pdfmake-browserified-0.1.18",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Browserified version of pdfmake 0.1.18, font Roboto included.",
   "main": "./build/bundle.js",
   "repository": {
