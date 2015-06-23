@@ -1,9 +1,9 @@
 
 ## Synopsis
 
-Browserified version of [pdfmake](http://pdfmake.org/), ready for NODE-REQUIRE() and HTML-SCRIPT-tag. Supports custom fonts.
+Browserified version of [pdfmake](http://pdfmake.org/). Ready *require()* and *script*-tag. Default font Roboto included. Supports custom fonts.
 
-Works well with these transcoded [Google Fonts](https://github.com/xErik/pdfmake-fonts-google/tree/master/build).
+Plenty of custom fonts can be found here: [Google Fonts](https://github.com/xErik/pdfmake-fonts-google/tree/master/build).
 
 ## Installation
 ```console
