@@ -1,7 +1,7 @@
 
 ## Synopsis
 
-Browserified version of [pdfmake](http://pdfmake.org/). Ready *require()* and *script*-tag. Default font Roboto included. Supports custom fonts.
+Browserified version of [pdfmake](http://pdfmake.org/). Supports *require()* and *script*-tag. Default font Roboto included. Supports custom fonts.
 
 Plenty of custom fonts can be found here: [Google Fonts](https://github.com/xErik/pdfmake-fonts-google/tree/master/build).
 
