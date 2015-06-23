@@ -1,0 +1,20 @@
+<!doctype html>
+ <html lang='en'>
+ <head>
+ 	<meta charset='utf-8'>
+ 	<title>Google Fonts with regular pdfmake</title>
+ 	<script src='../build/pdfmake-browserified.min.js'></script>
+ </head>
+ <body>
+    <input type="button" onclick="openPdf()" value="Open PDF"></input>
+     <script type="">
+        /* Do not forget to set the defaultStyle to the font name you included above */
+        function openPdf() {
+            var docDefinition = {
+                content: "This is a sample PDF printed with pdfMake"
+            };
+            createPdf(docDefinition).open();
+        }
+     </script>
+ </body>
+</html>

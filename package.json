@@ -1,0 +1,47 @@
+{
+  "name": "pdfmake-browserified",
+  "version": "0.1.0",
+  "description": "Browserified version of pdfmake",
+  "main": "./build/pdfmake-browserified.min.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xErik/pdfmake-browserified"
+  },
+  "scripts": {
+    "build": "browserify src/pdfmake.js -g aliasify -s createPdf -p browserify-derequire -d -p [minifyify --no-map] -o build/pdfmake-browserified.min.js",
+    "build_test": "browserify test/app.js -d -p [minifyify --no-map] -o test/bundle.js",
+    "prestart": "npm run build && npm run build_test",
+    "start": "node test/server.js"
+  },
+  "author": "xErik",
+  "license": "MIT",
+  "dependencies": {},
+  "keywords": [
+    "pdfmake",
+    "browserify",
+    "pdfkit",
+    "pdf",
+    "browser"
+  ],
+  "devDependencies": {
+    "aliasify": "^1.7.2",
+    "angular": "^1.4.1",
+    "brfs": "1.0.2",
+    "browserify-derequire": "^0.9.4",
+    "connect": "^3.3.5",
+    "minifyify": "^7.0.1",
+    "open": "0.0.5",
+    "pdfmake": "0.1.18",
+    "serve-static": "^1.9.3"
+  },
+  "browserify": {
+    "transform": [
+      "aliasify"
+    ]
+  },
+  "aliasify": {
+    "aliases": {
+      "fs": "./src/virtual-fs.js"
+    }
+  }
+}

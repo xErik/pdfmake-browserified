@@ -1,0 +1,3 @@
+Folder contains fonts available with require().
+
+Roboto gets included as default font in the build. The rest is for testing.
