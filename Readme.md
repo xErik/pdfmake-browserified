@@ -9,7 +9,13 @@ Default font Roboto included, thus zero configuration.
 
 Supports custom fonts.
 
-Plenty of custom fonts, for usual and browserified pdfmake, can be found here: [Google Fonts](https://github.com/xErik/pdfmake-fonts-google/tree/master/build).
+Plenty of custom fonts, prepared pdfmake and pdfmake-browserified, can be found here: [Google Fonts](https://github.com/xErik/pdfmake-fonts-google/tree/master/build).
+
+## pdfmake-browserified ≈ pdfmake
+
+pdfmake-browserified can be used like the original pdfmake via `script`-tag in an HTML page. With the same method signature: `createPdf(docDefinition, fonts, vfs).open();`
+
+**But**: It can be used via `require('pdfmake-browserify')` in Node applications, too. In Node, the method signature stays the same: `createPdf(docDefinition, fonts, vfs).open();`
 
 ## Installation
 ```console
