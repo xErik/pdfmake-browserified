@@ -1,6 +1,6 @@
 {
   "name": "pdfmake-browserified",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Browserified version of pdfmake. Supports require() and script-tag. Default font Roboto included, thus zero configuration. Supports custom fonts.",
   "main": "./build/pdfmake-browserified.min.js",
   "repository": {
