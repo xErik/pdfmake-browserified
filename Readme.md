@@ -1,9 +1,15 @@
 
 ## Synopsis
 
-Browserified version of [pdfmake](http://pdfmake.org/). Supports *require()* and *script*-tag. Default font Roboto included. Supports custom fonts.
+Browserified version of [pdfmake](http://pdfmake.org/).
 
-Plenty of custom fonts can be found here: [Google Fonts](https://github.com/xErik/pdfmake-fonts-google/tree/master/build).
+Supports both *require()* and the usual pdfmake *script*-tag.
+
+Default font Roboto included, thus zero configuration.
+
+Supports custom fonts.
+
+Plenty of custom fonts, for usual and browserified pdfmake, can be found here: [Google Fonts](https://github.com/xErik/pdfmake-fonts-google/tree/master/build).
 
 ## Installation
 ```console
@@ -11,6 +17,20 @@ npm install pdfmake-browserified
 ```
 
 ## Usage
+
+This module may be used in four ways, which will be detailed below:
+
+Via `require('pdfmake-browserified')`
+
+* Browserified with provided default font
+
+* Browserified with custom font
+
+Via `<script src='pdfmake-browserified.min.js'></script>`
+
+* Script-tag with provided default font
+
+* Script-tag with custom font
 
 ### Browserified pdfmake (AngularJS, ...)
 
@@ -36,8 +56,8 @@ createPdf(dd).open();
 ```javascript
 var createPdf = require('pdfmake-browserified');
 
-var map = require('<path to>/pdfmake-fonts-google/build/browserified/ofl/junge.map.js'); // font style mapping
-var data = require('<path to>/pdfmake-fonts-google/build/browserified/ofl/junge.js'); // font data
+var map = require('<path to>/browserified/ofl/junge.map.js'); // font style mapping
+var data = require('<path to>/browserified/ofl/junge.js'); // font data
 var defaultFont = Object.keys(map)[0];
 
 var dd = {
@@ -93,8 +113,8 @@ createPdf(dd, map, data).open();
  	<meta charset='utf-8'>
  	<title>Google Fonts with regular pdfmake</title>
  	<script src='<your path>/pdfmake-browserified.min.js'></script>
- 	<script src='<your path>/junge.js'></script><!-- the font data -->
- 	<script src='<your path>/junge.map.js'></script><!-- the font-style mapping -->
+ 	<script src='<your path>/script/ofl/junge.js'></script><!-- the font data -->
+ 	<script src='<your path>/script/ofl/junge.map.js'></script><!-- the font-style mapping -->
  </head>
  <body>
     <input type="button" onclick="openPdf()" value="Open PDF"></input>
@@ -116,20 +136,25 @@ createPdf(dd, map, data).open();
 
 ## Motivation
 
-1. Providing pdfmake as an npm module, which can be `require`d.
-2. Removing boilerplate code, that is required when one uses pdfmake with frameworks line AngularJS.
+Providing pdfmake as an npm module, which can be `require`d.
+
+Removing boilerplate code, that is required when one uses pdfmake with frameworks line AngularJS.
 
 ## Tests
 
-This command will build the module bundle and open a browser. The page provides buttons to check `open`, `download` capabilities manually.
+A small AngularJS example is provided in the test directory.
+
+
+The commands below will build the module bundle and open a browser. The page provides buttons to check `open` and `download` capabilities manually.
+
 ```
 npm install
 npm start
 ```
 
-## Notes
+## Minification
 
-During your builds, including this module, you want to exclude this module from minification/uglification, as it is already minified. The same is true for custom fonts.
+During your production builds, including this module, you want to exclude this module from minification/uglification/compression, as it is already minified. The same is true for custom fonts. Both are pretty big and will slow minification/uglification/compression down.
 
 ## Contributors
 
