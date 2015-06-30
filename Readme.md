@@ -1,88 +1,43 @@
-
-## Synopsis
-
-Browserified version of [pdfmake](http://pdfmake.org/).
-
-Supports both *require()* and the usual pdfmake *script*-tag.
-
-Default font Roboto included, thus zero configuration.
-
-Supports custom fonts.
-
-Plenty of custom fonts, prepared pdfmake and pdfmake-browserified, can be found here: [Google Fonts](https://github.com/xErik/pdfmake-fonts-google/tree/master/build).
-
-## pdfmake-browserified ≈ pdfmake
-
-pdfmake-browserified can be used like the original pdfmake via `script`-tag in an HTML page. With the same method signature: `createPdf(docDefinition, fonts, vfs).open();`
-
-**But**: It can be used via `require('pdfmake-browserify')` in Node applications, too. In Node, the method signature stays the same: `createPdf(docDefinition, fonts, vfs).open();`
+* Browserified version of [pdfmake](http://pdfmake.org/).
+* Can be used effortlessly with e.g. [AngularJS](https://angularjs.org/).
+* Default font Roboto included, thus zero configuration.
+* Supports custom fonts (find prepared fonts here: [Prepared Google Fonts](https://github.com/xErik/pdfmake-fonts-google/tree/master/build/browserified)).
 
 ## Installation
 ```console
 npm install pdfmake-browserified
 ```
 
-## Usage
+## Node Usage
 
-This module may be used in four ways, which will be detailed below:
-
-Via `require('pdfmake-browserified')`
-
-* Browserified with provided default font
-
-* Browserified with custom font
-
-Via `<script src='pdfmake-browserified.min.js'></script>`
-
-* Script-tag with provided default font
-
-* Script-tag with custom font
-
-### Browserified pdfmake (AngularJS, ...)
-
-#### Default Font: Roboto
-
+***Default Font: Roboto***
 ```javascript
 var createPdf = require('pdfmake-browserified');
-
-var dd = {
-	content: "This is a sample PDF printed with pdfMake",
-	styles: {
-		/* your styles */
-	}
-};
-
+var dd = { content: "This is a sample PDF printed with pdfMake" };
 createPdf(dd).open();
 ```
 
-#### Custom Font: Junge
 
-**Note**: Prepared custom fonts can be found at [browserified pdfmake-fonts-google](https://github.com/xErik/pdfmake-fonts-google/tree/master/build/browserified).
+***Custom Font: Junge***
+
+*Find prepared fonts for Node here: [Prepared Google Fonts](https://github.com/xErik/pdfmake-fonts-google/tree/master/build/browserified).*
 
 ```javascript
 var createPdf = require('pdfmake-browserified');
-
 var map = require('<path to>/browserified/ofl/junge.map.js'); // font style mapping
 var data = require('<path to>/browserified/ofl/junge.js'); // font data
-var defaultFont = Object.keys(map)[0];
 
+var defaultFont = Object.keys(map)[0];
 var dd = {
 	content: "This is a sample PDF printed with pdfMake",
-	styles: {
-		/* your styles */
-	},
-	defaultStyle: {
-		font: defaultFont // important, don't forget to set!
-	}
-
+	defaultStyle: { font: defaultFont }
 };
-
 createPdf(dd, map, data).open();
 ```
 
-### Regular pdfmake
+## Browser Usage
 
-#### Default font: Roboto
+***Default Font: Roboto***
 
 ```html
 <!doctype html>
@@ -94,11 +49,9 @@ createPdf(dd, map, data).open();
  </head>
  <body>
     <input type="button" onclick="openPdf()" value="Open PDF"></input>
-     <script type="">
+     <script>
         function openPdf() {
-            var docDefinition = {
-                content: "This is a sample PDF printed with pdfMake"
-            };
+            var docDefinition = { content: "This is a sample PDF printed with pdfMake" };
             createPdf(docDefinition).open();
         }
      </script>
@@ -108,9 +61,9 @@ createPdf(dd, map, data).open();
 ```
 
 
-####  Custom font: Junge
+***Custom Font: Junge***
 
-**Note**: Prepared custom fonts can be found at [scriptified pdfmake-fonts-google](https://github.com/xErik/pdfmake-fonts-google/tree/master/build/script).
+*Find prepared fonts for Browser here: [Prepared Google Fonts](https://github.com/xErik/pdfmake-fonts-google/tree/master/build/script).*
 
 ```html
 <!doctype html>
@@ -119,19 +72,16 @@ createPdf(dd, map, data).open();
  	<meta charset='utf-8'>
  	<title>Google Fonts with regular pdfmake</title>
  	<script src='<your path>/pdfmake-browserified.min.js'></script>
- 	<script src='<your path>/script/ofl/junge.js'></script><!-- the font data -->
- 	<script src='<your path>/script/ofl/junge.map.js'></script><!-- the font-style mapping -->
+ 	<script src='<your path>/ofl/junge.js'></script><!-- the font data -->
+ 	<script src='<your path>/ofl/junge.map.js'></script><!-- the font-style mapping -->
  </head>
  <body>
     <input type="button" onclick="openPdf()" value="Open PDF"></input>
-     <script type="">
-        /* Do not forget to set the defaultStyle to the font name you included above */
+     <script>
         function openPdf() {
             var docDefinition = {
                 content: "This is a sample PDF printed with pdfMake",
-                defaultStyle: {
-            		font: Object.keys(pdfMake.fonts)[0]
-            	}
+                defaultStyle: { font: Object.keys(pdfMake.fonts)[0] }
             };
             createPdf(docDefinition, pdfMake.fonts, pdfMake.vfs).open();
         }
@@ -144,7 +94,7 @@ createPdf(dd, map, data).open();
 
 Providing pdfmake as an npm module, which can be `require`d.
 
-Removing boilerplate code, that is required when one uses pdfmake with frameworks line AngularJS.
+Removing boilerplate code, that is required when one uses pdfmake with frameworks line [AngularJS](https://angularjs.org/).
 
 ## Tests
 
@@ -158,9 +108,15 @@ npm install
 npm start
 ```
 
-## Minification
+## Minification for Production
 
 During your production builds, including this module, you want to exclude this module from minification/uglification/compression, as it is already minified. The same is true for custom fonts. Both are pretty big and will slow minification/uglification/compression down.
+
+## Comparing pdfmake-browserified and pdfmake
+
+pdfmake-browserified can be used like the original pdfmake via `script`-tag in an HTML page. With the same method signature: `createPdf(docDefinition, fonts, vfs).open();`
+
+**But**: It can be used via `require('pdfmake-browserify')` in Node applications, too. In Node, the method signature stays the same: `createPdf(docDefinition, fonts, vfs).open();`
 
 ## Contributors
 
