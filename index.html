@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Pdfmake: Browserified by xErik</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Pdfmake: Browserified</h1>
+      <h2 class="project-tagline">Browserified version of pdfmake. Supports require() and script-tag. Default font Roboto included. Supports custom fonts.</h2>
+      <a href="https://github.com/xErik/pdfmake-browserified" class="btn">View on GitHub</a>
+      <a href="https://github.com/xErik/pdfmake-browserified/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/xErik/pdfmake-browserified/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <ul>
+<li>Browserified version of <a href="http://pdfmake.org/">pdfmake</a>.</li>
+<li>Can be used effortlessly with e.g. <a href="https://angularjs.org/">AngularJS</a>.</li>
+<li>Default font Roboto included, thus zero configuration.</li>
+<li>Supports custom fonts (find prepared fonts here: <a href="https://github.com/xErik/pdfmake-fonts-google/tree/master/build/browserified">Prepared Google Fonts</a>).</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<div class="highlight highlight-console"><pre><span class="pl-mo">npm install pdfmake-browserified</span></pre></div>
+
+<h2>
+<a id="node-usage" class="anchor" href="#node-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Node Usage</h2>
+
+<p><strong><em>Default Font: Roboto</em></strong></p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> createPdf <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>pdfmake-browserified<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> dd <span class="pl-k">=</span> { content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>This is a sample PDF printed with pdfMake<span class="pl-pds">"</span></span> };
+createPdf(dd).<span class="pl-c1">open</span>();</pre></div>
+
+<p><strong><em>Custom Font: Junge</em></strong></p>
+
+<p><em>Find prepared fonts for Node here: <a href="https://github.com/xErik/pdfmake-fonts-google/tree/master/build/browserified">Prepared Google Fonts</a>.</em></p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> createPdf <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>pdfmake-browserified<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> map <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;path to&gt;/browserified/ofl/junge.map.js<span class="pl-pds">'</span></span>); <span class="pl-c">// font style mapping</span>
+<span class="pl-k">var</span> data <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;path to&gt;/browserified/ofl/junge.js<span class="pl-pds">'</span></span>); <span class="pl-c">// font data</span>
+
+<span class="pl-k">var</span> defaultFont <span class="pl-k">=</span> <span class="pl-c1">Object</span>.keys(map)[<span class="pl-c1">0</span>];
+<span class="pl-k">var</span> dd <span class="pl-k">=</span> {
+    content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>This is a sample PDF printed with pdfMake<span class="pl-pds">"</span></span>,
+    defaultStyle<span class="pl-k">:</span> { font<span class="pl-k">:</span> defaultFont }
+};
+createPdf(dd, map, data).<span class="pl-c1">open</span>();</pre></div>
+
+<h2>
+<a id="browser-usage" class="anchor" href="#browser-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Browser Usage</h2>
+
+<p><strong><em>Default Font: Roboto</em></strong></p>
+
+<div class="highlight highlight-html"><pre>&lt;!doctype html&gt;
+ &lt;<span class="pl-ent">html</span> <span class="pl-e">lang</span>=<span class="pl-s"><span class="pl-pds">'</span>en<span class="pl-pds">'</span></span>&gt;
+ &lt;<span class="pl-ent">head</span>&gt;
+    &lt;<span class="pl-ent">meta</span> <span class="pl-e">charset</span>=<span class="pl-s"><span class="pl-pds">'</span>utf-8<span class="pl-pds">'</span></span>&gt;
+    &lt;<span class="pl-ent">title</span>&gt;Google Fonts with regular pdfmake&lt;/<span class="pl-ent">title</span>&gt;
+<span class="pl-s1">    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>&lt;your path&gt;/pdfmake-browserified.min.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
+ &lt;/<span class="pl-ent">head</span>&gt;
+ &lt;<span class="pl-ent">body</span>&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>button<span class="pl-pds">"</span></span> <span class="pl-e">onclick</span>=<span class="pl-s"><span class="pl-pds">"</span>openPdf()<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Open PDF<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">input</span>&gt;
+<span class="pl-s1">     &lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">        <span class="pl-k">function</span> <span class="pl-en">openPdf</span>() {</span>
+<span class="pl-s1">            <span class="pl-k">var</span> docDefinition <span class="pl-k">=</span> { content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>This is a sample PDF printed with pdfMake<span class="pl-pds">"</span></span> };</span>
+<span class="pl-s1">            createPdf(docDefinition).<span class="pl-c1">open</span>();</span>
+<span class="pl-s1">        }</span>
+<span class="pl-s1">     &lt;/<span class="pl-ent">script</span>&gt;</span>
+ &lt;/<span class="pl-ent">body</span>&gt;
+&lt;/<span class="pl-ent">html</span>&gt;
+</pre></div>
+
+<p><strong><em>Custom Font: Junge</em></strong></p>
+
+<p><em>Find prepared fonts for Browser here: <a href="https://github.com/xErik/pdfmake-fonts-google/tree/master/build/script">Prepared Google Fonts</a>.</em></p>
+
+<div class="highlight highlight-html"><pre>&lt;!doctype html&gt;
+ &lt;<span class="pl-ent">html</span> <span class="pl-e">lang</span>=<span class="pl-s"><span class="pl-pds">'</span>en<span class="pl-pds">'</span></span>&gt;
+ &lt;<span class="pl-ent">head</span>&gt;
+    &lt;<span class="pl-ent">meta</span> <span class="pl-e">charset</span>=<span class="pl-s"><span class="pl-pds">'</span>utf-8<span class="pl-pds">'</span></span>&gt;
+    &lt;<span class="pl-ent">title</span>&gt;Google Fonts with regular pdfmake&lt;/<span class="pl-ent">title</span>&gt;
+<span class="pl-s1">    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>&lt;your path&gt;/pdfmake-browserified.min.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>&lt;your path&gt;/ofl/junge.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span><span class="pl-c">&lt;!-- the font data --&gt;</span>
+<span class="pl-s1">    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>&lt;your path&gt;/ofl/junge.map.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span><span class="pl-c">&lt;!-- the font-style mapping --&gt;</span>
+ &lt;/<span class="pl-ent">head</span>&gt;
+ &lt;<span class="pl-ent">body</span>&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>button<span class="pl-pds">"</span></span> <span class="pl-e">onclick</span>=<span class="pl-s"><span class="pl-pds">"</span>openPdf()<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Open PDF<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">input</span>&gt;
+<span class="pl-s1">     &lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">        <span class="pl-k">function</span> <span class="pl-en">openPdf</span>() {</span>
+<span class="pl-s1">            <span class="pl-k">var</span> docDefinition <span class="pl-k">=</span> {</span>
+<span class="pl-s1">                content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>This is a sample PDF printed with pdfMake<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">                defaultStyle<span class="pl-k">:</span> { font<span class="pl-k">:</span> <span class="pl-c1">Object</span>.keys(pdfMake.fonts)[<span class="pl-c1">0</span>] }</span>
+<span class="pl-s1">            };</span>
+<span class="pl-s1">            createPdf(docDefinition, pdfMake.fonts, pdfMake.vfs).<span class="pl-c1">open</span>();</span>
+<span class="pl-s1">        }</span>
+<span class="pl-s1">     &lt;/<span class="pl-ent">script</span>&gt;</span>
+ &lt;/<span class="pl-ent">body</span>&gt;
+&lt;/<span class="pl-ent">html</span>&gt;</pre></div>
+
+<h2>
+<a id="motivation" class="anchor" href="#motivation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivation</h2>
+
+<p>Providing pdfmake as an npm module, which can be <code>require</code>d.</p>
+
+<p>Removing boilerplate code, that is required when one uses pdfmake with frameworks line <a href="https://angularjs.org/">AngularJS</a>.</p>
+
+<h2>
+<a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests</h2>
+
+<p>A small AngularJS example is provided in the test directory.</p>
+
+<p>The commands below will build the module bundle and open a browser. The page provides buttons to check <code>open</code> and <code>download</code> capabilities manually.</p>
+
+<pre><code>npm install
+npm start
+</code></pre>
+
+<h2>
+<a id="minification-for-production" class="anchor" href="#minification-for-production" aria-hidden="true"><span class="octicon octicon-link"></span></a>Minification for Production</h2>
+
+<p>During your production builds, including this module, you want to exclude this module from minification/uglification/compression, as it is already minified. The same is true for custom fonts. Both are pretty big and will slow minification/uglification/compression down.</p>
+
+<h2>
+<a id="comparing-pdfmake-browserified-and-pdfmake" class="anchor" href="#comparing-pdfmake-browserified-and-pdfmake" aria-hidden="true"><span class="octicon octicon-link"></span></a>Comparing pdfmake-browserified and pdfmake</h2>
+
+<p>pdfmake-browserified can be used like the original pdfmake via <code>script</code>-tag in an HTML page. With the same method signature: <code>createPdf(docDefinition, fonts, vfs).open();</code></p>
+
+<p><strong>But</strong>: It can be used via <code>require('pdfmake-browserify')</code> in Node applications, too. In Node, the method signature stays the same: <code>createPdf(docDefinition, fonts, vfs).open();</code></p>
+
+<h2>
+<a id="contributors" class="anchor" href="#contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributors</h2>
+
+<p>xErik</p>
+
+<h3>
+<a id="other-projects" class="anchor" href="#other-projects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other Projects</h3>
+
+<p><a href="https://www.npmjs.com/package/pdfmake-browserified"><strong>NPM pdfmake-browserified</strong> MIT License</a></p>
+
+<p><a href="https://github.com/xErik/pdfmake-browserified"><strong>GIT pdfmake-browserified</strong> MIT License</a></p>
+
+<p><a href="http://pdfmake.org/"><strong>pdfmake</strong> MIT License</a></p>
+
+<p><a href="https://www.google.com/fonts/specimen/Roboto"><strong>Roboto</strong> Apache License</a></p>
+
+<p><a href="https://www.google.com/fonts/specimen/Junge"><strong>Junge</strong> OFL License</a></p>
+
+<h2>
+<a id="note" class="anchor" href="#note" aria-hidden="true"><span class="octicon octicon-link"></span></a>Note</h2>
+
+<p>I did this for fun. Contributions from people with a more solid node background are welcome!</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>MIT</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/xErik/pdfmake-browserified">Pdfmake: Browserified</a> is maintained by <a href="https://github.com/xErik">xErik</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
